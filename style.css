@@ -47,12 +47,12 @@ ul > li {
     width: 0;
     margin-left: -250px;
     overflow-y: auto;
-    transition: all 0.5s ease;
+    transition: all 0.25s ease;
 }
 
 .wrapper {
     padding-left: 0;
-    transition: all 0.5s ease;
+    transition: all 0.25s ease;
 }
 
 .wrapper.sidebar-toggled {
@@ -75,18 +75,34 @@ ul > li {
     background-color: #afafaf;
 }
 
+
 #sidebar-toggle {
-    text-align: right;
-    float: right;
+    background: #282828;
     color: #bbb;
+    
+    height: 56px;
+    width: 56px;
+    
+    line-height: 56px;
+    text-align: center;
+    font-size: 25px;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.navbar-brand {
+    font-size: 20px;
 }
 
 #sidebar-toggle:hover {
     color: #000;
+    background: #fff;
 }
 
 /* invert behavior of .sidebar-toggled class when screen is smaller than 700 px */
-@media(max-width: 700px) {
+@media(max-width: 768px) {
     .wrapper.sidebar-toggled {
         padding-left: 0;
     }
@@ -114,9 +130,10 @@ ul > li {
         margin-right: -250px;
         width: 100%;
     }
-
-    #sidebar-toggle {
-        display: none;
+        
+    .navbar-brand {
+        left: 56px;
+        position: relative;
     }
 }
 

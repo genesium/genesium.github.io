@@ -2,12 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, shrink-to-fit=no">
         <!-- TODO: Fill.
         <meta name="description" content="">
         <meta name="author" content="">
         -->
-        <link rel="icon" href="favicon.ico">
         
         <script src="https://use.fontawesome.com/5a8785cde8.js"></script>
 
@@ -23,7 +22,7 @@
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
             <a class="navbar-brand" href="#">The Genesium Archive</a>
             
-            <a href="#" class="btn hidden-sm-up btn-outline-secondary navbar-toggler-right" type="button" id="sidebar-toggle"><span class="fa fa-lg fa-bars" /></a>
+            <a href="#" class="hidden-md-up fa fa-lg fa-bars" id="sidebar-toggle"></a>
         </nav>
         <div class="wrapper sidebar-toggled">
             <div class="sidebar">
@@ -100,27 +99,53 @@
         <script>
             $(document).ready(function() {
                 $(".back-to-top-button").css("display", "none");
-            });
-            $(document).scroll(function() {
-                if (window.pageYOffset > ($(".sidebar-content").innerHeight() + 220)) {
-                    $(".back-to-top-button").css("display", "block");
-                } else {
-                    $(".back-to-top-button").css("display", "none");
-                }
-            });
-            $(document).on("swipeleft", function(event) {
-                $(".wrapper").addClass("sidebar-toggled");
-            });
-            $(document).on("swiperight", function(event) {
-                $(".wrapper").removeClass("sidebar-toggled");            
-            });
-        </script>
-        <script>
-            $("#sidebar-toggle").click(function(event) {
-                event.preventDefault();
+                $(document).scroll(function() {
+                    if (window.pageYOffset > ($(".sidebar-content").innerHeight() + 220)) {
+                        $(".back-to-top-button").css("display", "block");
+                    } else {
+                        $(".back-to-top-button").css("display", "none");
+                    }
+                });
+                $("#sidebar-toggle").click(function(event) {
+                    event.preventDefault();
 
-                $(".wrapper").toggleClass("sidebar-toggled");
+                    $(".wrapper").toggleClass("sidebar-toggled");
+                });
             });
+            
+            document.addEventListener('touchstart', handleTouchStart, false);        
+            document.addEventListener('touchmove', handleTouchMove, false);
+
+            var xDown = null;                                                        
+            var yDown = null;                                                        
+
+            function handleTouchStart(event) {                                         
+                xDown = event.touches[0].clientX;                                      
+                yDown = event.touches[0].clientY;                                      
+            };                                                
+
+            function handleTouchMove(event) {
+                if (!xDown || !yDown) {
+                    return;
+                }
+
+                var xUp = event.touches[0].clientX;                                    
+                var yUp = event.touches[0].clientY;
+
+                var xDiff = xDown - xUp;
+                var yDiff = yDown - yUp;
+
+                if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                    if (xDiff > 10) {
+                        $(".wrapper").addClass("sidebar-toggled");
+                    } else if (xDiff < -10) {
+                        $(".wrapper").removeClass("sidebar-toggled");
+                    }                       
+                }
+                
+                xDown = null;
+                yDown = null;                                             
+            };
         </script>
     </body>
 </html>
