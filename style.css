@@ -153,3 +153,14 @@ ul > li {
     opacity: 0.5;
     color: #000;
 }
+
+a {
+  transition: color 0.25s ease;  
+  color: #08088A;
+}
+
+.sidebar-content a:hover {
+  color: #120A2A;
+  transition: color 0.5s ease;
+  text-decorations: none;
+}
