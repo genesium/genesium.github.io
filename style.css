@@ -43,7 +43,6 @@ ul > li {
     background-color: #777777;
 
     position: absolute;
-/*                left: 250px;*/
     width: 0;
     margin-left: -250px;
     overflow-y: auto;
@@ -99,6 +98,12 @@ ul > li {
 #sidebar-toggle:hover {
     color: #000;
     background: #fff;
+    text-decoration: none;
+}
+
+#sidebar-toggle:focus, #sidebar-toggle:visited {
+    text-decoration: none;
+    border: none;
 }
 
 /* invert behavior of .sidebar-toggled class when screen is smaller than 700 px */
