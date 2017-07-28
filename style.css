@@ -46,12 +46,10 @@ ul > li {
     width: 0;
     margin-left: -250px;
     overflow-y: auto;
-    transition: all 0.25s ease;
 }
 
 .wrapper {
     padding-left: 0;
-    transition: all 0.25s ease;
 }
 
 .wrapper.sidebar-toggled {
